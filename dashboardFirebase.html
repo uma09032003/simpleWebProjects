@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Homepage</title>
+		<link rel="stylesheet" href="stylehp.css">
+<script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-database-compat.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+<script>
+    var firebaseConfig = {
+  apiKey: "AIzaSyDfu4unRSQcn5xUOy3xIlm0WVz7FR_ar9U",
+  authDomain: "testsite-3cdd1.firebaseapp.com",
+  databaseURL: "https://testsite-3cdd1-default-rtdb.firebaseio.com",
+  projectId: "testsite-3cdd1",
+  storageBucket: "testsite-3cdd1.appspot.com",
+  messagingSenderId: "581506475386",
+  appId: "1:581506475386:web:856783afffc1d0219362c3"
+};
+firebase.initializeApp(firebaseConfig);
+</script>
+<style>
+#myp{
+display:none;
+position:absolute;
+top:7vh;
+min-height:14vh;
+min-width:25vw;
+background-color:#d5e7eb;
+right:2vw;
+border:1px solid #237b8c;
+border-radius:10px;
+}
+.textbox{
+background-color:white;
+width:20vw;
+height:2.8vw;
+border-width:1px;
+margin-top:20px;
+border-radius:5px;
+border-color:rgb(189, 128, 156);
+margin-bottom:1.4vw;
+color:black;
+font-weight:bold;
+}
+::placeholder{
+color:rgb(168, 145, 155);
+}
+.saveButton{
+background-color:#ceecf2; 
+color:#237b8c; 
+font-weight:bold;
+border-color:white;
+border-width:0.3px;
+border-radius:6px;
+min-width:60px;
+min-height:40px;
+cursor:pointer;
+}
+#closeButton{
+float:right;
+margin-right:12px; 
+background-color: #ff6666;
+color:white;
+font-weight:bold;
+border-color:white;
+border-width:0.3px;
+border-radius:6px;
+min-width:60px;
+min-height:40px;
+cursor:pointer;
+}
+ 
+</style>
+<script>
+function editEmail(){
+var ref=firebase.database().ref("Plastics/Industry/A1/");
+var x=document.getElementById("email").value;
+ref.update({
+"4 Email":x
+});
+alert("Email Updated");
+}
+function editMobile(){
+var ref=firebase.database().ref("Plastics/Industry/A1/");
+var x=document.getElementById("mobile").value;
+ref.update({
+"5 Phone Number":x
+});
+alert("Mobile Number Updated");
+}
+</script>
+
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="topbar">
+				<div class="logo">
+					<h2>Statis...</h2>
+				</div>
+				<div class="search" id="search" placeholder="Search here">
+				<label for="search"><i class="fas fa-search"></i></label>
+				</div>
+				<i class="fas fa-bell"></i>
+				<div class="user" style="cursor:pointer;">
+			<abbr title = "Edit Profile"><img src="user.png" alt="Logout"></a></abbr></div>
+	
+                                           <div id="myp">
+                                        	<label for="email" class="nolabel"></label>
+<input type="text" class="textbox" id="email" placeholder="Edit Email"/>
+<button  type="button" onclick="editEmail()" class="saveButton">Save</button>
+
+    <label for="mobile" class="nolabel"></label>
+<input type="text" class="textbox" id="mobile" placeholder="Edit Mobile Number"/>
+<button  type="button" onclick="editMobile()" class="saveButton">Save</button>                                       
+
+                                        </div>
+
+                                        </div>
+                                </div>
+			</div>
+			<div class="welcome">
+					<marquee  scrollment= "300" scrolldelay="10" loop="6">
+					<h2>Let Us All Plan to Recycle to create a Circular Economy</h2>
+					</marquee>
+			</div>
+			<div class="sidebar">
+				<ul>
+				<h2><center>My Contact</center></h2></br></br>
+				<div class="c"><h3 id="City"><center></center></h3></br></div>
+                                <div class="c"><h3 id="State"><center></center></h3></br></div>
+                                <div class="c"><h3 id="Email"><center></center></h3></br></div>
+                                <div class="c"><h3 id="Mobile"><center></center></h3></div>
+                                <script>
+                                var ref=firebase.database().ref("Plastics/Industry/A1/");
+                                ref.on("value",function(snapshot){
+        //console.log(snapshot.val()); 
+
+        var x=[];
+        var y=[];
+        for (const [key,value] of Object.entries(snapshot.val())){
+            x.push(key);
+            y.push(value);
+        }
+        for (i=0;i<y.length;i++){
+x[i]=x[i].slice(2,x[i].length);
+}
+         console.log(y[1]);
+          document.getElementById("City").innerHTML="Location:    "+y[1];
+          document.getElementById("State").innerHTML="State:    "+y[7];
+          document.getElementById("Email").innerHTML="Email:    "+y[8];
+          document.getElementById("Mobile").innerHTML="Mobile:    "+y[9];
+           });
+          </script>
+				</ul>
+			</div>
+			<div class="main">
+				<div class="cards">
+					<div class="card">
+						<div class="card-content">
+							<div id="Multilayer">100</div>
+							<div class="card-name">Multilayer</div>
+						</div>
+						<div class="icon box">
+							<i class="fas fa-user-graduate"></i>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-content">
+							<div id="PE">100</div>
+							<div class="card-name">PE</div>
+						</div>
+						<div class="icon box">
+							<i class="fas fa-user-graduate"></i>
+						</div>
+					</div>
+					<div class="card">	
+						<div class="card-content">
+							<div id="PET">100</div>
+							<div class="card-name">PET</div>
+						</div>
+						<div class="icon box">
+							<i class="fas fa-user-graduate"></i>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-content">
+							<div id="PP">100</div>
+							<div class="card-name">PP</div>
+						</div>
+						<div class="icon box">
+							<i class="fas fa-user-graduate"></i>
+						</div>
+					</div>
+				</div>
+				<div class="charts">
+					<div id="chart">
+						<h2>Chart</br></h2>
+                                         <div id="charts">
+                                                <p style="visibility:hidden;"> </p>
+
+<script>
+		var ref=firebase.database().ref('Plastics/Industry/A1/');
+    ref.on("value",function(snapshot){
+        //console.log(snapshot.val()); 
+
+        var x=[];
+        var y=[];
+        for (const [key,value] of Object.entries(snapshot.val())){
+            x.push(key);
+            y.push(value);
+        }
+        console.log("Value Updated");
+        x=x.filter((a,i)=>[2,3,4,5].includes(i));
+        y=y.filter((a,i)=>[2,3,4,5].includes(i));
+for (i=0;i<x.length;i++){
+x[i]=x[i].slice(2,x[i].length);
+}
+
+  var data = [{
+  x: x,
+  y: y,
+  type: "bar",
+  text:x,
+   marker:{
+   color: ['blue', 'orange','pink','yellow','brown']
+  }}];
+    var layout = {title:"Types of Plastics Collected ",plot_bgcolor:"white",paper_bgcolor:"white"};
+    Plotly.newPlot("charts", data, layout);
+    document.getElementById("Multilayer").innerHTML=data[0].y[0];
+    document.getElementById("PE").innerHTML=data[0].y[1];
+    document.getElementById("PET").innerHTML=data[0].y[2];
+    document.getElementById("PP").innerHTML=data[0].y[3];
+
+});
+
+</script>
+</div>						<canvas id="myChart"></canvas>
+					</div>
+					<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <center><h5 class="card-header h5 text-center">
+                        Live Detection
+                    </h5></center>
+                    <div class="card-body">
+                        <div class="booth">
+                            <video id="video" width="100%" 
+                                height="100%" autoplay>
+                            </video>
+                        </div>
+  
+                        <div class="text-right">
+			<div class="cam">
+                            <a href="#!" class="btn btn-danger" 
+                                onClick="stop()">
+                                Stop Cam
+                            </a>
+			</div>
+			<div class="cam">
+			<a href="#!" class="btn btn-success"
+                                onClick="start()">
+                                Start Cam
+                            </a>
+			</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+				</div>
+			</div>
+		</div>
+	
+	</body>
+<script>
+document.getElementsByClassName("user")[0].addEventListener("click",function(){
+if(document.getElementById("myp").style.display.localeCompare("block")==0)
+document.getElementById("myp").style.display="none";
+else
+document.getElementById("myp").style.display="block";
+});
+</script>
+		
+</html>
