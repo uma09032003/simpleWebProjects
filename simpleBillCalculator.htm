@@ -1,0 +1,102 @@
+<html>
+  
+  <!-- Build a Simple Web based Bill Calculator using HTML, CSS and Javascript -->
+<head>
+<title>
+Testing CreateElement in Javascript 
+</title>
+<script>
+	let items={};
+</script>
+</head>
+<style>
+	body{
+		background-color: #becde6;
+	}
+	#center{
+		text-align:center;
+		background-color: #9bafd4;
+		border-width:6px;
+		border-radius:10px;
+		position:relative;
+		top:10vh;
+		left:32vw;
+		right:25vw;
+		bottom:5vh;
+		min-height:25vh;
+		max-width:35vw;
+	}
+</style>
+<body>
+<div id="center">
+<div id="fortable" style="text-align:center;">
+	<label> Enter the Number of Items : <input type="text" id="inp"/> </label>
+	<button onclick="aa()" > Get a new Sheet </button>
+	<div id="abc" style="text-align:center;"></div>
+</div>
+</div>
+<button style="background-color: red; min-width: 20px; border-radius:10px; border-color:white; color:white; position:relative; top:10vh; left:63vw; " onclick="window.close()">X</button>
+</body>
+
+<script>
+function aa(){
+	//Write a Javascript Program to get the contents of Bill with Price as input and print the sum 
+	var a=document.getElementById("inp").value;
+	console.log(a);
+	a=parseInt(a);
+	console.log(a);
+	for(let i=0;i<a;i++){
+		let c=window.prompt("Item Name :");
+		let b=window.prompt("Quantity : ");
+		items[c]=parseInt(b);
+		console.log(parseInt(b));
+		console.log(Object.keys(items)[0]);
+	}
+	var node=document.createElement("table");
+	var sum=0;
+	node.style.border="2px solid #d1e3b8";
+	node.style.marginLeft="120px";
+	node.style.marginTop="30px";
+	var pp=node.createTHead();
+	pp=pp.insertRow(0);
+	pp.style.border="2px solid black";
+	pp.style.backgroundColor="orange";
+	pp.style.textAlign="center";
+	pp.insertCell(-1).appendChild(document.createTextNode("ITEM NAME"));
+	pp.insertCell(-1).appendChild(document.createTextNode("PRICE"));
+	var arr=Object.keys(items);
+	for(i in arr){
+		let j=node.insertRow(-1);
+		j.style.minWidth="25vw";
+		//j.style.backgroundColor="green";
+		var p=j.insertCell(-1)
+		p.style.backgroundColor="pink";
+		p.style.minWidth="10vw";
+		p.style.textAlign="center";
+		p.appendChild(document.createTextNode(arr[i]));
+		var p=j.insertCell(-1)
+		p.style.backgroundColor="#e8cf89";
+		p.style.minWidth="10vw";
+		p.style.textAlign="center";
+		p.appendChild(document.createTextNode(items[arr[i]]))//.style.backgroundColor="violet";
+		sum+=items[arr[i]];
+	}
+	let j=node.insertRow(-1);
+		j.style.minWidth="25vw";
+		var p=j.insertCell(-1)
+		p.style.backgroundColor="pink";
+		p.style.minWidth="10vw";
+		p.style.textAlign="center";
+		p.appendChild(document.createTextNode("TOTAL"));
+		var p=j.insertCell(-1)
+		p.style.backgroundColor="#e8cf89";
+		p.style.minWidth="10vw";
+		p.style.textAlign="center";
+		p.appendChild(document.createTextNode(sum));
+		items={};
+
+document.getElementById("abc").append(node);
+}
+
+</script>
+</html>
